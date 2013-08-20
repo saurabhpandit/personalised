@@ -1,0 +1,26 @@
+[ui]
+username = Saurabh Pandit <saurabh.pandit@nn.com.au>
+#merge = kdiff3
+
+[hostfingerprints]
+hg.nn.local = DC:84:86:E4:EB:7C:AC:4C:FE:F1:4A:B0:22:E5:EF:8B:3A:94:8B:76 
+
+[extensions]
+graphlog = 
+color = 
+pager =
+
+[pager]
+pager = LESS='FRX' less
+
+[color]
+mode = auto
+
+[http_proxy] 
+no = hg.nn.local
+
+[extdiff]
+cmd.kdiff3 = kdiff3
+
+[merge-tools]
+kdiff3.args = $base $local $other -o $output
