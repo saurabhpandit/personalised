@@ -21,3 +21,8 @@
     untracked = cyan
 [branch "master"]
 	remote = origin
+[alias]
+        stat = status
+        hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --decorate --date=short
+        glog = log --graph --decorate --date=short
+
