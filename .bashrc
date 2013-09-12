@@ -64,7 +64,7 @@ function activateVenv()
 
 function mountportaldev()
 {
-	sshfs root@portaldev.nn.local:/root/workspace /home/pands/workspace/workspace@portaldev
+	sshfs -o auto_unmount -o allow_other -o default_permissions -o uidfile=~/.uidmapping -o gidfile=~/.gidmapping -o idmap=file root@portaldev.nn.local:/root/workspace /home/pands/workspace/workspace@portaldev
 }
 
 function unmountportaldev()
