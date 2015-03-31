@@ -5,6 +5,10 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+if [ -f ~/.git-completion.bash ]; then
+  . ~/.git-completion.bash
+fi
+
 function setAllProxies()
 {
 	if [ -e ~/.proxypid ]
@@ -34,6 +38,21 @@ function vm6()
 	ssh vm6
 }
 
+
+function activate()
+{       
+        if test -z "$1"
+        then    
+                echo "Usage: activate <yourvenv>"
+                return
+        else    
+                TAG=$1
+                echo "Activating venv ~/serpentarium/$TAG/bin/activate"
+        fi
+        source ~/serpentarium/$TAG/bin/activate
+}
+
+
 function unsetAllProxies()
 {
 	cat ~/.proxypid | xargs kill
@@ -52,16 +71,16 @@ function startDropbox()
 	env http_proxy=http://127.0.0.1:3128 /home/pands/.dropbox-dist/dropboxd &
 }
 
-function activatePylon()
-{
-	source ~/pyvirtual/pylons/bin/activate
-}
+#function activatePylon()
+#{
+#	source ~/pyvirtual/pylons/bin/activate
+#}
 
-function activateVenv()
-{
-	source ~/workspace/venv/bin/activate
-}
-
+#function activateVenv()
+#{
+#	source ~/workspace/venv/bin/activate
+#}
+#
 function mountportaldev()
 {
 	sshfs -o auto_unmount -o allow_other -o default_permissions -o uidfile=~/.uidmapping -o gidfile=~/.gidmapping -o idmap=file root@portaldev.nn.local:/root/workspace /home/pands/workspace/workspace@portaldev
@@ -95,6 +114,12 @@ function gitupdatetag ()
 		git push origin $TAG
 }
 
+function pretty_json()
+{
+    python -c  'import fileinput, json
+print json.dumps(json.loads("".join(fileinput.input())), sort_keys=True, indent=4)' $*
+}
+
 #→ 
 
 #export PS1="\n\[\033[0;36m\]\@ \
@@ -102,5 +127,8 @@ function gitupdatetag ()
 #\[\033[1;30m\]] \[\033[1;32m\] \n\$ \[\033[0;37m\] \$(parse_git_branch)"
 source ~/.scm_prompt
 
-export IDEA_JDK=/usr/lib/jvm/java-1.6.0-openjdk.x86_64/
+export JAVA_HOME=/usr/java/jdk1.7.0_72/
+export PYCHARM_JDK=/usr/java/jdk1.7.0_72/
+export IDEA_JDK=/usr/java/jdk1.7.0_72/
+
 
